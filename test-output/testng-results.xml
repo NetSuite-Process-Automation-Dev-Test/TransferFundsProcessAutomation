@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-01-19T09:07:57Z" name="Suite" finished-at="2021-01-19T09:09:03Z" duration-ms="65593">
+    <groups>
+      <group name="cucumber">
+        <method signature="TestRunner.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:com.qa.transferFunds.runner.TestRunner@12d4bf7e]" name="feature" class="com.qa.transferFunds.runner.TestRunner"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test started-at="2021-01-19T09:07:57Z" name="Test" finished-at="2021-01-19T09:09:03Z" duration-ms="65593">
+      <class name="com.qa.transferFunds.runner.TestRunner">
+        <test-method is-config="true" signature="setUpClass()[pri:0, instance:com.qa.transferFunds.runner.TestRunner@12d4bf7e]" started-at="2021-01-19T14:37:58Z" name="setUpClass" finished-at="2021-01-19T14:37:58Z" duration-ms="356" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:com.qa.transferFunds.runner.TestRunner@12d4bf7e]" started-at="2021-01-19T14:37:58Z" name="feature" description="Runs Cucumber Feature" data-provider="features" finished-at="2021-01-19T14:39:03Z" duration-ms="64730" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Creation of Transfer in Netsuite]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- feature -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.qa.transferFunds.runner.TestRunner@12d4bf7e]" started-at="2021-01-19T14:39:03Z" name="tearDownClass" finished-at="2021-01-19T14:39:03Z" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- com.qa.transferFunds.runner.TestRunner -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
