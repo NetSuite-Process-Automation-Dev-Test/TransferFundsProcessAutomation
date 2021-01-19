@@ -23,7 +23,7 @@ public class TestBase extends ExtentReportListener {
 	public TestBase() {
 		try {
 			prop = new Properties();
-			FileInputStream fis = new FileInputStream("F:\\Selenium\\TransferFundsProcessAutomation\\src\\main\\java\\com\\qa\\tranferFunds\\config\\config.properties");
+			FileInputStream fis = new FileInputStream("F:\\Selenium\\TransferFundsProcessAutomation\\src\\main\\java\\com\\qa\\transferFunds\\config\\config.properties");
 			prop.load(fis);
 		} catch(IOException e) {
 			e.getMessage();
