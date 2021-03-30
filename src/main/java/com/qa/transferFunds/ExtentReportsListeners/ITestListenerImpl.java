@@ -64,6 +64,16 @@ public class ITestListenerImpl extends ExtentReportListener implements ITestList
 	}
 	
 	public void sendEmail(String receipient) throws EmailException {
+		if(receipient.contains(",")) {
+			String[] receipientList = receipient.split(",");
+			for (int i = 0; i < receipientList.length; i++)
+				emailToSingleReceipient(receipientList[i]);
+		}else {
+			emailToSingleReceipient(receipient);
+		}
+	}
+
+	public void emailToSingleReceipient(String receipient) throws EmailException {
 		// Create the attachment
 		EmailAttachment attachment = new EmailAttachment();
 		attachment.setPath("./Extent_report/Transfer Funds Process Automation.html");
@@ -85,6 +95,7 @@ public class ITestListenerImpl extends ExtentReportListener implements ITestList
 		
 		// send the email
 		email.send();
+		System.out.println("Email sent to '"+receipient+"'");
 	}
 
 }

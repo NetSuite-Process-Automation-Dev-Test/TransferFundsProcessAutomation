@@ -18,8 +18,11 @@ public class AuthenticationPage extends TestBase{
 	@FindBy(name = "submitter")
 	WebElement authSubmitBtn;
 	
-	@FindBy(xpath = "//table[@cellpadding='3']//tr[not(@class)]")
+	@FindBy(xpath = "//table[@class='listTable']//tr")
 	List<WebElement> rolesList;
+	
+	@FindBy(xpath = "//table[@cellpadding='3']//tr[not(@class)]")
+	List<WebElement> rolesList2;
 	
 	public AuthenticationPage() {
 		PageFactory.initElements(driver, this);
@@ -30,15 +33,6 @@ public class AuthenticationPage extends TestBase{
 		// Handling the Security Question Page
 		if(!driver.getTitle().contains("The system was not able to select a login role for you based on your usual NetSuite usage. Choose an item from the list below.")) {
 			String actQuestion = secQuestion.getText();
-			
-			/* For Ruby's login
-			 * if (actQuestion.trim().equals(prop.getProperty("question1"))) {
-			 * driver.findElement(By.name("answer")).sendKeys("nickname"); } else if
-			 * (actQuestion.trim().equals(prop.getProperty("question2"))) {
-			 * driver.findElement(By.name("answer")).sendKeys("name"); } else if
-			 * (actQuestion.trim().equals(prop.getProperty("question3"))) {
-			 * driver.findElement(By.name("answer")).sendKeys("job"); }
-			 */
 			
 			// For my login
 			if (actQuestion.trim().equals(prop.getProperty("question1"))) {
@@ -60,28 +54,33 @@ public class AuthenticationPage extends TestBase{
 
 			authSubmitBtn.click();
 		}else {
-			for(int i=0;i<rolesList.size();i++) {
-				WebElement currentRole = rolesList.get(i);
-				String roleText = currentRole.getText();
-				if(roleText.contains("Tvarana Dev Test") && roleText.contains("PRODUCTION") && roleText.contains("Administrator")) {
-					WebElement lastChildTd = (WebElement)executor.executeScript("return arguments[0].lastElementChild;", currentRole);
-					WebElement chooseRoleLink = (WebElement)executor.executeScript("return arguments[0].lastElementChild;", lastChildTd);
-					System.out.println(chooseRoleLink.getText());
-					chooseRoleLink.click();
-					break;
+			try {
+				eleAvailability(driver, rolesList.get(1), 5);
+				for(int i=0;i<rolesList.size();i++) {
+					WebElement currentRole = rolesList.get(i);
+					String roleText = currentRole.getText();
+					if(roleText.contains("Tvarana Dev Test") && roleText.contains("PRODUCTION") && roleText.contains("Administrator")) {
+						WebElement lastChildTd = (WebElement)executor.executeScript("return arguments[0].lastElementChild;", currentRole);
+						WebElement chooseRoleLink = (WebElement)executor.executeScript("return arguments[0].lastElementChild;", lastChildTd);
+						chooseRoleLink.click();
+						break;
+					}
+				}
+			} catch (Exception e) {
+				eleAvailability(driver, rolesList2.get(1), 5);
+				for(int i=0;i<rolesList2.size();i++) {
+					WebElement currentRole = rolesList2.get(i);
+					String roleText = currentRole.getText();
+					if (roleText.contains("Tvarana Dev Test")
+							&& roleText.contains("PRODUCTION")/* && roleText.contains("Administrator") */) {
+						WebElement lastChildTd = (WebElement)executor.executeScript("return arguments[0].lastElementChild;", currentRole);
+						WebElement chooseRoleLink = (WebElement)executor.executeScript("return arguments[0].lastElementChild;", lastChildTd);
+						chooseRoleLink.click();
+						break;
+					}
 				}
 			}
 			String actQuestion = secQuestion.getText();
-			
-			/* For Ruby's login
-			 * if (actQuestion.trim().equals(prop.getProperty("question1"))) {
-			 * driver.findElement(By.name("answer")).sendKeys("nickname"); } else if
-			 * (actQuestion.trim().equals(prop.getProperty("question2"))) {
-			 * driver.findElement(By.name("answer")).sendKeys("name"); } else if
-			 * (actQuestion.trim().equals(prop.getProperty("question3"))) {
-			 * driver.findElement(By.name("answer")).sendKeys("job"); }
-			 */
-			
 			// For my login
 			if (actQuestion.trim().equals(prop.getProperty("question1"))) {
 				driver.findElement(By.id("null")).sendKeys("nickname");

@@ -11,6 +11,7 @@ import com.qa.transferFunds.util.TestBase;
 
 import cucumber.api.DataTable;
 import cucumber.api.Transform;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Then;
 
 public class transferFundsStepDef extends TestBase {
@@ -18,6 +19,11 @@ public class transferFundsStepDef extends TestBase {
 	LoginPage loginPage;
 	AuthenticationPage authPage;
 	HomePage homePage;
+	
+	@After
+	public void closeBrowser() {
+		driver.quit();
+	}
 	
 	@Then("^Create a Transfer using excel data at \"([^\"]*)\"$")
 	public void create_a_Transfer_using_excel_data_at(@Transform(ExcelDataToDataTable.class) DataTable transferFundsData) throws InterruptedException {
